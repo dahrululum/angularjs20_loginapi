@@ -14,15 +14,15 @@ export class Dashboard {
       this.getUsers();
     }
     getUsers(){
-      debugger;
+      //debugger;
       this.http.get("https://freeapi.miniprojectideas.com/api/User/GetAllUsers").subscribe(
       {
       next:(response:any)=>{
-        debugger;
+        //debugger;
           
         },
         error:(error)=>{
-          debugger;
+          //debugger;
         
         }
       }
