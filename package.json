@@ -26,6 +26,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "angular-paginator": "^13.0.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.7",
     "font-awesome": "^4.7.0",

@@ -1,1 +1,112 @@
 <p>dashboard works!</p>
+<!-- <div class="row">
+    <div class="col-8 table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>website</th>
+                    <th>username</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of userList; track $index) {
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.website }}</td>
+                        <td>{{ item.username }}</td>
+                        <td>{{ item.email }}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+     <div class="col-4 table-responsive">
+        <ul>
+            @for (item of todoList; track $index) {
+                <li>{{ item.title }}</li>
+            }
+        </ul>     
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>userID</th>
+                    <th>title</th>
+                    <th>body</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- @for (item of postList; track $index) {
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.userId }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.body }}</td>
+                    </tr>
+                } -->
+                    <tr *ngFor="let item of postList |angularPaginator:{currentPage:currentPage}; index as i;">
+                        <td>{{ (currentPage - 1 ) * maxPage + i + 1 }}</td>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.userId }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.body }}</td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <nav (pageChange)="currentPage = $event" [maxSize]="5" [rotate]="true" [forceEllipses]="true" #paginator="angularPaginator" angularPaginator>
+            <ng-container *ngIf="paginator.pages['length'] !==0">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a (click)="paginator.toPreviousPage()" [ngClass]="paginator.currentPage === paginator.firstPage? 'disable':'enable' " class="page-link">
+                            <span>Prev</span>
+                        </a>
+                    </li>
+                    <li *ngFor="let page of paginator.pages " class="page-item">
+                        <a (click)="!page['active'] && paginator.setCurrentPage(page['number'])" [ngClass]="page['active']?'active':'disable'" class="page-link ">
+                            <span>{{ page['text'] }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="paginator.toNextPage()" [ngClass]="paginator.currentPage === paginator.lastPage? 'disable':'enable' " class="page-link ">
+                            <span>Next</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </ng-container>
+        </nav>
+    </div>
+    <div class="col-6 table-responsive">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>userID</th>
+                    <th>title</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of postList; track $index) {
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.userId }}</td>
+                        <td>{{ item.title }}</td>
+                         
+                    </tr>
+                }
+                   
+
+            </tbody>
+        </table>
+    </div>
+</div>
